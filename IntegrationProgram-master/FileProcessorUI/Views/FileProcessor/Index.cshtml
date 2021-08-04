@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using FileProcessorUI.Models;
+
+@model List<Output>
+<div style="height:50px"></div>
+<div>
+    @using (Html.BeginForm())
+    {
+        <p>
+            Enter the file path: @Html.TextBox("filePath", null, new { @class = "form-control", style = "display:table-cell" })
+            <input type="submit" value="Process file" class="btn btn-default" />
+        </p>}
+    </div>
+    <div class="box-body">
+        <table id="tbList" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(module => item.Customer)</td>
+                        <td>@Html.DisplayFor(module => item.Date)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Total)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>
+        @if (ViewBag.Error != null)
+        {
+            <label>@ViewBag.Error</label>
+        }
+    </div>
+
